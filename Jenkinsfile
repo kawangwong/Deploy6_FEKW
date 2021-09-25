@@ -14,7 +14,7 @@ pipeline{
             }
         stage ('test') {
             agent {
-                label 'Your agent label'
+                label 'worker2'
             }
             steps {
             sh '''
