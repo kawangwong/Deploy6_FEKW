@@ -20,7 +20,7 @@ pipeline {
         npm install cypress
         npm install mocha
         echo $WORKPACE
-        npx cypress run --spec ./cypress/integration/test.spec.js
+        npx cypress run --spec ./kura_test_repo/cypress/integration/test.spec.js
         '''
       }
       post {
