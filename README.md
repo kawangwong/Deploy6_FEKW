@@ -139,7 +139,7 @@ Change the test file in the integration folder, or change the code itself within
 In the cypress.json file, add the tag `trashAssetsBeforeRuns` and set to `False`
 Rerun a build in Jenkins
 Location of the files can be found in the cypress folder.
-You can grab the files on Windows using ![WinSCP](https://winscp.net/eng/index.php) program or if you're on a Unix like system, ![sftp](https://devconnected.com/4-ways-to-transfer-files-and-directories-on-linux/)
+You can grab the files on Windows using [WinSCP](https://winscp.net/eng/index.php) program or if you're on a Unix like system, [sftp](https://devconnected.com/4-ways-to-transfer-files-and-directories-on-linux/)
 
 <h1>Documentation</h1>
 There were several problems that I ran into to deplying:
