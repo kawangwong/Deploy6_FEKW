@@ -88,7 +88,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 <h2>Infrastrucsture</h2>
 Used my aws VPC deploy script to deploy a new production/testing environment with 4 subnets, 2 public and 2 private.
 First Ec2
-t2.micro aamzon ami
+t2.micro Amazon ami
 vpc public subnet 1a
 SG port 22 8080 set as SG1
 
@@ -115,6 +115,24 @@ sudo apt upgrade -y
 sudo apt install default-jre git nodejs npm maven libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 xauth xvfb -y
 ``
 
+<h2>EC21</h2>
+Install Jenkins, use recommended plugins, followed up additional plugins Maven, nodejs, and EC2 plugin
+Set up multibranch pipeline to use a git account that can be added using Personal Access token
+https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+Access the git that has the kura repo and edit the jenkinsfiles to include an & after the serve build and also the label to refer stage 2 to the worker2 and stage 1 for worker1
+
+Set up agents with the following tag. (worker1) for Second EC2 and (worker2) for Third EC2
+For the settings, use as much as possible as this will be manually overrided using the tags in teh Jenkinsfile.
+Add accounts with credentials based off the SSH key plaintext of the private key associated with each respective EC2 and use non-verifying strategy.
+For directory, it will be ``/home/ubuntu/jenkins`` since it is referencing a ubuntu default user server.
+Check that the jenkins are online, if not. there may be something off.
+
+<h2>Additional Changes needed to be made</h2>
+Change the test file in the integration folder to the respective IP if worker2.
+
+Test should now run and succeed.
+
+<h2>How to cause failure</h2>
 
 
 <h1>Documentation</h1>
@@ -133,4 +151,7 @@ Solution: checked, files and was present. needed to rerun build and check direct
 Solution:place cypress in the location that the script was looking at
 
 All of these problems still persisted. Spoke with a colleague to see their repo. It turns out the original kura_labs_repo files should be placed at the root, which was causing the issues of location and dependency issues since the script and subsequent scripts used relative pathways.
+Solution: Move kura repo files to the root. That fixed most issues.
 
+``Time out on server in stage 2``
+Solution: Change the server pathway in test integrations js file to your respective worker1's IP
