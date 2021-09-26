@@ -155,3 +155,15 @@ Solution: Move kura repo files to the root. That fixed most issues.
 
 ``Time out on server in stage 2``
 Solution: Change the server pathway in test integrations js file to your respective worker1's IP
+
+
+``I did everything right and it failed the first time``
+``npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! cypress@8.4.1 postinstall: `node index.js --exec install`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the cypress@8.4.1 postinstall script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+``
+Solution: Try again. It's still unclear to me why the first time a build would fail. I assume a dependency time out from long loads may be a cause.
