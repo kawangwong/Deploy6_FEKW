@@ -115,7 +115,7 @@ sudo apt upgrade -y
 sudo apt install default-jre git nodejs npm maven libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 xauth xvfb -y
 ``
 
-<h2>EC21</h2>
+<h2>EC2 Main</h2>
 Install Jenkins, use recommended plugins, followed up additional plugins Maven, nodejs, and EC2 plugin
 Set up multibranch pipeline to use a git account that can be added using Personal Access token
 https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
@@ -133,6 +133,13 @@ Change the test file in the integration folder to the respective IP if worker2.
 Test should now run and succeed.
 
 <h2>How to cause failure</h2>
+Change the test file in the integration folder, or change the code itself within the react app.
+
+<h2>Screenshots and/or video</h2>
+In the cypress.json file, add the tag `trashAssetsBeforeRuns` and set to `False`
+Rerun a build in Jenkins
+Location of the files can be found in the cypress folder.
+
 
 
 <h1>Documentation</h1>
