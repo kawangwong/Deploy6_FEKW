@@ -1,3 +1,20 @@
+# DEPLOY6_FE
+<h1 align=center>Deployment 6</h1>
+
+Welcome to deployment 6, for this deployment you will need to follow the directions in the deployment6.pdf.    
+
+- Be sure to include the following below in your pull request: 
+
+***Requirements:*** 
+- [x]Document issues and anything you decided to do different..
+- [x]Generate a failed and passed test.
+- [x]Take a screenshots of your failed and passed test.
+- [x]Locate and upload cypress's screenshot and video of the headless browser test. 
+
+👉Link to deployment instructions: [here](https://github.com/kura-labs-org/DEPLOY6_FE/blob/main/Deployment%236.pdf)  
+
+![image](https://i.morioh.com/210507/ac11056f.webp)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,3 +83,54 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+<h1>Instructions</h1>
+<h2>Infrastrucsture</h2>
+Used my aws VPC deploy script to deploy a new production/testing environment with 4 subnets, 2 public and 2 private.
+First Ec2
+t2.micro aamzon ami
+vpc public subnet 1a
+SG port 22 8080 set as SG1
+
+Second Ec2
+t2.micro ubuntu 20
+vpc public subnet 1a
+SG port 22 and allow SG Group 1
+Bootstrap
+
+``
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install default-jre git npm nodejs -y
+``
+
+Third Ec2
+t2.micro ubuntu 20
+vpc public subnet 1a
+SG port 22 and allow SG Group1
+Bootstrap
+``
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install default-jre git nodejs npm maven libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 xauth xvfb -y
+``
+
+
+
+<h1>Documentation</h1>
+There were several problems that I ran into to deplying:
+Jenkins`error ERROR: Error cloning remote repo 'origin'`
+Solution: needed to install git on main server
+
+`npm WARN saveError ENOENT: no such file or directory, open '/home/ubuntu/jenkins/workspace/reactbuild_main/package.json'
+npm WARN notsup Unsupported engine for mocha@9.1.2: wanted: {"node":">= 12.0.0"} (current: {"node":"10.19.0","npm":"6.14.4"})`
+Solution: Manually installed mocha latest version
+
+`test.spec.js was missing.`
+Solution: checked, files and was present. needed to rerun build and check directories. found directory.
+
+`cound not find the cypress.json file as the script kept looking in the wrong place, so I found the cypress file in the sub directory and placed that one level up where the script was running.`
+Solution:place cypress in the location that the script was looking at
+
+All of these problems still persisted. Spoke with a colleague to see their repo. It turns out the original kura_labs_repo files should be placed at the root, which was causing the issues of location and dependency issues since the script and subsequent scripts used relative pathways.
+
