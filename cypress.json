@@ -3,5 +3,7 @@
   "reporterOptions": {
     "mochaFile": "results/cypress-report.xml",
     "toConsole": true
+    "trashAssetsBeforeRuns": false
+    
   }
 }
